@@ -14,6 +14,12 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name = "organisation", uniqueConstraints = @UniqueConstraint(columnNames = { "CIO" }))
 public class Organisation {
+	
+	/**
+	 * Cette classe est une entité JPA, regroupant les codes CIO et ISO,
+	 * ainsi que les noms en Anglais et Français des Organisations,
+	 * ainsi que leurs associations avec les différentes participations (voir Participe)
+	 */
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

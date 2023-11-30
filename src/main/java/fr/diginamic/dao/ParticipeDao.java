@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import fr.diginamic.entite.Athlete;
-import fr.diginamic.entite.Epreuve;
 import fr.diginamic.entite.Evenement;
 import fr.diginamic.entite.Organisation;
 import fr.diginamic.entite.Participe;

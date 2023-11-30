@@ -10,41 +10,85 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+/**
+ * 
+ * Cette classe est une entité JPA, représentant les participations (relation
+ * entre évenement et athlètes, dont son organisation). Données récupérées
+ * depuis evenement.csv
+ */
+
 @Entity
 @Table(name = "participe", uniqueConstraints = @UniqueConstraint(columnNames = { "ID_ATHLETE", "ID_EVENEMENT" }))
 public class Participe {
 
+	/**
+	 * Identifiant unique de la participation
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	/**
+	 * Age de l'Athlete au moment de la participation
+	 */
 	@Column(name = "AGE")
 	private Integer age;
 
+	/**
+	 * Taille de l'Athlete au moment de la participation
+	 */
 	@Column(name = "TAILLE")
 	private Float taille;
 
+	/**
+	 * Poid de l'Athlete au moment de la participation
+	 */
 	@Column(name = "POIDS")
 	private Float poid;
 
+	/**
+	 * Equipe de l'Athlete au moment de la participation (une Organisation peut
+	 * avoir plusieurs équipes)
+	 */
 	@Column(name = "EQUIPE")
 	private String equipe;
 
+	/**
+	 * Médaile obtenu par l'Athlete à cette participation
+	 */
 	@Column(name = "MEDAILLE")
 	private String medaille;
 
+	/**
+	 * Athlete de la participation (contient Nom et Sexe) Relation ManyToOne : la
+	 * participation concerne un athlète, un Athlete peut être concerné par
+	 * plusieurs participations
+	 */
 	@ManyToOne
 	@JoinColumn(name = "ID_ATHLETE")
 	private Athlete athlete;
 
+	/**
+	 * Evenement de la participation (contient édition et épreuve) Relation
+	 * ManyToOne : la participation concerne un évenement, un évenement peut être
+	 * concerné par plusieurs participations(plusieurs Athlétes)
+	 */
 	@ManyToOne
 	@JoinColumn(name = "ID_EVENEMENT")
 	private Evenement evenement;
 
+	/**
+	 * Organisation de la participation Relation ManyToOne : la participation
+	 * concerne une organisation, une organisation peut être concerné par plusieurs
+	 * participations
+	 */
 	@ManyToOne
 	@JoinColumn(name = "ID_ORGANISATION")
 	private Organisation organisation;
 
+	/**
+	 * Constructeur par défault de JPA
+	 */
 	public Participe() {
 	}
 

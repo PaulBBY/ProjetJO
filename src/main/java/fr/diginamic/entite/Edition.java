@@ -10,27 +10,51 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+
+/**
+ * Cette classe est une entité JPA, représentant les éditions (relation entre l'année, la saison, la ville et ses épreuves)/
+ * Données récupérées de puis evenement.csv
+ */
 @Entity
 @Table(name = "edition", uniqueConstraints = @UniqueConstraint(columnNames = { "ANNEE", "SAISON", "VILLE" }))
 public class Edition {
 
+	
+	/**
+	 * Identifiant unique de l'édition
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	// a verif
+	/**
+	 * Année de l'édition
+	 */
 	@Column(name = "ANNEE")
 	private Integer annee;
 
+	/**
+	 * Saison de l'édition
+	 */
 	@Column(name = "SAISON")
 	private String saison;
 
+	/**
+	 * Ville de l'édition
+	 */
 	@Column(name = "VILLE")
 	private String ville;
-
+	
+	/**
+	 * Evenements de l'édition
+	 * Relation OnetoMany : l'édition a plusieurs évenements, un évenement n'est concerné que par une seul édition
+	 */
 	@OneToMany(mappedBy="edition")
 	private List<Evenement> evenement;
 
+	/**
+	 * Constructeur par défault de JPA
+	 */
 	public Edition() {
 	}
 

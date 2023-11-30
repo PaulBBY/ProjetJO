@@ -11,29 +11,54 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+/**
+ * Cette classe est une entité JPA, regroupant les noms en Anglais et en Français des épreuves et des Sports, et leurs évenements associés (voir Evenement)
+ */
 @Entity
 @Table(name = "epreuve", uniqueConstraints = @UniqueConstraint(columnNames = { "EPREUVE_ENG" }))
 public class Epreuve {
-
+	
+	/**
+	 * Identifant unique de l'épreuve
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	/**
+	 * Nom Anglaise de l'épreuve
+	 */
 	@Column(name = "EPREUVE_ENG")
 	private String epreuveEng;
 
+	/**
+	 * Nom Français de l'épreuve
+	 */
 	@Column(name = "EPREUVE_FR")
 	private String epreuveFr;
 
+	/**
+	 * Nom Anglais du Sport
+	 */
 	@Column(name = "SPORT_ENG")
 	private String sportEng;
 
+	/**
+	 * Nom Français du Sport
+	 */
 	@Column(name = "SPORT_FR")
 	private String sportFr;
 
+	/**
+	 * Evenements associés à une épreuve
+	 * Remation OneToMant : une épreuve peut être dans plusieurs évenments, un évenement ne concerne qu'une épreuve
+	 */
 	@OneToMany(mappedBy = "epreuve")
 	private List<Evenement> evenement;
 
+	/**
+	 * Constructeur par défault JPA
+	 */
 	public Epreuve() {
 	}
 

@@ -3,7 +3,6 @@ package fr.diginamic.creation;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -22,6 +21,9 @@ import fr.diginamic.entite.Epreuve;
 import fr.diginamic.entite.Evenement;
 import fr.diginamic.entite.Organisation;
 
+/**
+ * Cette classe regroupe les méthodes permettant l'implémentation de la base de données depuis les fichiers csv, ainsi que les traductions
+ */
 public class CreaScript {
 	
 	private EntityManager em;
