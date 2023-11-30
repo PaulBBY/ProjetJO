@@ -26,8 +26,15 @@ import fr.diginamic.entite.Organisation;
  */
 public class CreaScript {
 	
+	/**
+	 * Un EntityManager initialisé par le constructeur, 
+	 * utilisé dans la majorité des méthodes de cette classe
+	 */
 	private EntityManager em;
 	
+	/**
+	 * Dao des différents objets JPA, initilialisés dans le constructeur
+	 */
 	private AthleteDao athleteDao;
 	private OrganisationDao organisationDao;
 	private EditionDao editionDao;
@@ -36,6 +43,16 @@ public class CreaScript {
 	private EvenementDao evenementDao;
 	private ParticipeDao participeDao;
 	
+	/**
+	 * 
+	 * @param em,créé dans la méthode principale
+	 * @param athleteDao, créé dans la méthode principale
+	 * @param organisationDao,créé dans la méthode principale
+	 * @param editionDao,créé dans la méthode principale
+	 * @param epreuveDao,créé dans la méthode principale
+	 * @param evenementDao,créé dans la méthode principale
+	 * @param participeDao,créé dans la méthode principale
+	 */
 	public CreaScript(EntityManager em, AthleteDao athleteDao, OrganisationDao organisationDao, EditionDao editionDao,
 			EpreuveDao epreuveDao, EvenementDao evenementDao, ParticipeDao participeDao) {
 		this.em = em;
@@ -47,6 +64,9 @@ public class CreaScript {
 		this.participeDao = participeDao;
 	}
 
+	/**
+	 * path vers les différents fichiers csv utilisés dans la création de la BDD
+	 */
 	private String paramOrga = "C:\\Pro\\JO\\liste_des_organisations.csv";
 	Path pathListOrga = Paths.get(paramOrga);
 
@@ -59,9 +79,11 @@ public class CreaScript {
 	private String paramEvenement = "C:\\Pro\\JO\\evenements.csv";
 	Path pathlistEvenement = Paths.get(paramEvenement);
 
-	//List<Epreuve> epreuves = new ArrayList<>();
-	//List<Organisation> organisations = new ArrayList<>();
 
+	/**
+	 * Méthode permettant de traduire le nom des organisations
+	 * @throws IOException
+	 */
 	public void majOrganisation() throws IOException {
 
 		List<String> lignes = CreaUtil.lire(pathListOrga);
@@ -81,12 +103,10 @@ public class CreaScript {
 
 		em.getTransaction().begin();
 
-		int test = 0;
 		String elimine = null;
 
 		while (itOrga.hasNext()) {
 			Organisation orga = itOrga.next();
-			System.out.println("je suis là");
 
 			for (String k : hashLignes.keySet()) {
 				if (k.equals(orga.getCio())) {
